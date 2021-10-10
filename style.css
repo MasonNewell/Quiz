@@ -1,0 +1,31 @@
+body {
+  margin: 0;
+  padding: 0;
+}
+
+button {
+  background-color: rgb(114, 4, 114);
+  color: white;
+  padding: 5px;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  height: 500px;
+  width: 100%;
+}
+
+#question-text {
+  font-size: 20px;
+  font-weight: 600;
+}
+
+ul {
+  padding-bottom: 10px;
+  width: 50%;
+  height: 200px;
+  border-bottom: 2px solid black;
+}
