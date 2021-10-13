@@ -4,10 +4,14 @@ var buttonB = document.querySelector("#button-B");
 var buttonC = document.querySelector("#button-C");
 var buttonD = document.querySelector("#button-D");
 var updateTime = document.querySelector("#timer");
+var questionBox = document.querySelector(".question-box");
 var questionText = document.querySelector("#question-text");
 var correct_incorrect = document.querySelector("#correct-incorrect");
+var initialKey = document.getElementById("initial");
+var submitButton = document.getElementById("submit");
+var showHighScores = document.querySelector(".high-score-submit");
 
-var timeRemaining;
+var timeRemaining = 0;
 var currentQuestion = 0;
 var gameover = false;
 
@@ -45,6 +49,7 @@ function timer() {
     // OPTION 1: Time up
     if (timeRemaining === 0 || gameover) {
       clearInterval(timeInterval);
+      handleGameOver();
     }
     // OPTION 2: Time remaining, questions remaining
     else {
@@ -56,15 +61,23 @@ function timer() {
 
 // Start button - start quiz
 startBtn.addEventListener("click", startQuiz);
-// MAIN function
 function startQuiz() {
-  timeRemaining = 300;
-  startBtn.disabled = true;
+  timeRemaining = 75;
+  startBtn.style.display = "none";
+  questionBox.style.display = "block";
   timer();
   updateQuestionInfo();
 }
 
-// Questions + Answers update
+// When game is finished
+function handleGameOver() {
+  // location.href = "./highscore.html";
+  questionBox.style.display = "none";
+  correct_incorrect.textContent = "";
+  showHighScores.style.display = "block";
+}
+
+// Updates text content after each question
 function updateQuestionInfo() {
   questionText.textContent = questionInfo[currentQuestion].question;
   buttonA.textContent = questionInfo[currentQuestion].A;
@@ -90,7 +103,7 @@ function correctAnswer() {
 // User picks incorrect
 function wrongAnswer() {
   correct_incorrect.textContent = "Wrong";
-  timeRemaining -= 50;
+  timeRemaining -= 15;
 }
 
 // Choice A is pressed
@@ -128,4 +141,12 @@ buttonD.addEventListener("click", function () {
     wrongAnswer();
   }
   update();
+});
+
+// Save users score
+submitButton.addEventListener("click", function () {
+  var key = initialKey.value;
+  localStorage.setItem(key, JSON.stringify(timeRemaining));
+
+  // showScore();
 });

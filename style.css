@@ -14,8 +14,13 @@ button {
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  height: 500px;
+  padding: 20px;
+  height: 800px;
   width: 100%;
+}
+
+.question-box {
+  display: none;
 }
 
 #question-text {
@@ -28,4 +33,17 @@ ul {
   width: 50%;
   height: 200px;
   border-bottom: 2px solid black;
+}
+
+.high-score-submit {
+  display: none;
+  padding: 0px;
+}
+
+.high-score-submit input {
+  padding: 10px;
+}
+
+.high-score-list {
+  margin-bottom: 10px;
 }

@@ -5,12 +5,13 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="./style.css" />
+    <link rel="highscore.html" href="./highscore.html" />
     <title>Quiz</title>
   </head>
   <body>
     <div class="container">
       <button id="start">Start</button>
-      <p id="timer">time</p>
+      <p id="timer">Time:</p>
       <ul class="question-box">
         <li><p id="question-text"></p></li>
         <li><button id="button-A"></button></li>
@@ -19,6 +20,12 @@
         <li><button id="button-D"></button></li>
       </ul>
       <p id="correct-incorrect"></p>
+
+      <div class="high-score-submit">
+        <h1>All Done!</h1>
+        <input id="initial" type="text" placeholder="Enter Initials..." />
+        <button id="submit">submit</button>
+      </div>
     </div>
     <script src="./script.js"></script>
   </body>
