@@ -9,7 +9,8 @@
     <title>Quiz</title>
   </head>
   <body>
-    <div class="container">
+    <main class="container">
+      <!-- Timer & Question Box -->
       <button id="start">Start</button>
       <p id="timer">Time:</p>
       <ul class="question-box">
@@ -21,12 +22,20 @@
       </ul>
       <p id="correct-incorrect"></p>
 
+      <!-- Submit Action -->
       <div class="high-score-submit">
         <h1>All Done!</h1>
+        <p>Your final score is: <span id="final-score">score</span></p>
         <input id="initial" type="text" placeholder="Enter Initials..." />
         <button id="submit">submit</button>
       </div>
-    </div>
+      <!-- List of High Scores -->
+      <div class="high-score-history">
+        High Score List:
+        <button id="go-back">Go Back</button>
+        <button id="clear-scores">Clear Highscores</button>
+      </div>
+    </main>
     <script src="./script.js"></script>
   </body>
 </html>

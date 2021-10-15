@@ -37,13 +37,26 @@ ul {
 
 .high-score-submit {
   display: none;
-  padding: 0px;
+  padding: 10px;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
 }
 
 .high-score-submit input {
   padding: 10px;
 }
 
-.high-score-list {
-  margin-bottom: 10px;
+.high-score-history {
+  display: none;
+  padding: 25px;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  background-color: cadetblue;
+}
+
+.high-score-history p {
+  text-align: center;
+  background-color: chartreuse;
 }

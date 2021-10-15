@@ -9,7 +9,11 @@ var questionText = document.querySelector("#question-text");
 var correct_incorrect = document.querySelector("#correct-incorrect");
 var initialKey = document.getElementById("initial");
 var submitButton = document.getElementById("submit");
-var showHighScores = document.querySelector(".high-score-submit");
+var highScoreSubmitEl = document.querySelector(".high-score-submit");
+var highScoreHistoryEl = document.querySelector(".high-score-history");
+var finalScoreEl = document.querySelector("#final-score");
+var goBackbtn = document.querySelector("#go-back");
+var clearScoresBtn = document.querySelector("#clear-scores");
 
 var timeRemaining = 0;
 var currentQuestion = 0;
@@ -69,12 +73,15 @@ function startQuiz() {
   updateQuestionInfo();
 }
 
-// When game is finished
+// When game is finished (hides question box, shows score history)
 function handleGameOver() {
-  // location.href = "./highscore.html";
   questionBox.style.display = "none";
+  updateTime.style.display = "none";
   correct_incorrect.textContent = "";
-  showHighScores.style.display = "block";
+  finalScoreEl.textContent = timeRemaining;
+  highScoreSubmitEl.style.display = "block";
+
+  showHighScoreList();
 }
 
 // Updates text content after each question
@@ -100,7 +107,7 @@ function update() {
 function correctAnswer() {
   correct_incorrect.textContent = "Correct!";
 }
-// User picks incorrect
+// User picks incorrect answer
 function wrongAnswer() {
   correct_incorrect.textContent = "Wrong";
   timeRemaining -= 15;
@@ -143,10 +150,39 @@ buttonD.addEventListener("click", function () {
   update();
 });
 
-// Save users score
+// Save users score, creates P tag for current score
 submitButton.addEventListener("click", function () {
   var key = initialKey.value;
   localStorage.setItem(key, JSON.stringify(timeRemaining));
+  var createPtag = document.createElement("p");
+  createPtag.textContent = key + " " + JSON.stringify(timeRemaining);
+  highScoreHistoryEl.appendChild(createPtag);
+  highScoreSubmitEl.style.display = "none";
+  highScoreHistoryEl.style.display = "block";
+});
 
-  // showScore();
+// show high score list (create P tag for each saved score)
+function showHighScoreList() {
+  for (var i = 0; i < localStorage.length; i++) {
+    var key = localStorage.key(i);
+    var value = localStorage.getItem(key);
+    var createPtag = document.createElement("p");
+    createPtag.textContent = key + " " + value;
+    highScoreHistoryEl.appendChild(createPtag);
+  }
+}
+
+// restarts quiz
+goBackbtn.addEventListener("click", function () {
+  location.reload();
+});
+
+// clears local storage
+clearScoresBtn.addEventListener("click", function () {
+  var allPtags = document.querySelectorAll("p");
+  for (var i = 0; i < allPtags.length; i++) {
+    allPtags[i].remove();
+  }
+  localStorage.clear();
+  showHighScoreList();
 });
