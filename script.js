@@ -1,4 +1,5 @@
 var startBtn = document.querySelector("#start");
+var introTextEl = document.querySelector(".intro-text");
 var buttonA = document.querySelector("#button-A");
 var buttonB = document.querySelector("#button-B");
 var buttonC = document.querySelector("#button-C");
@@ -68,7 +69,9 @@ startBtn.addEventListener("click", startQuiz);
 function startQuiz() {
   timeRemaining = 75;
   startBtn.style.display = "none";
+  introTextEl.style.display = "none";
   questionBox.style.display = "block";
+  updateTime.style.display = "block";
   timer();
   updateQuestionInfo();
 }
@@ -110,7 +113,7 @@ function correctAnswer() {
 // User picks incorrect answer
 function wrongAnswer() {
   correct_incorrect.textContent = "Wrong";
-  timeRemaining -= 15;
+  timeRemaining -= 10;
 }
 
 // Choice A is pressed
